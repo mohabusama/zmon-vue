@@ -9,6 +9,11 @@ import Routes from './routes'
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
 
+Vue.material.registerTheme('default', {
+  primary: 'orange',
+})
+
+
 const router = new VueRouter({routes: Routes})
 
 const app = new Vue({

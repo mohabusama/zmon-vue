@@ -1,5 +1,5 @@
 import Home from './components/Home.vue'
-import Dashboard from './components/Dashboard.vue'
+import Dashboard from './components/dashboard/Dashboard.vue'
 
 
 export default [
