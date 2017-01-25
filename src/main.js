@@ -4,10 +4,12 @@ import VueMaterial from 'vue-material'
 
 import App from './App.vue'
 import Routes from './routes'
+import Zmon from './plugins/zmon'
 
 
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
+Vue.use(Zmon, {url: 'http://localhost:3003/rest'})
 
 Vue.material.registerTheme('default', {
   primary: 'orange',

@@ -3,7 +3,7 @@
     <md-whiteframe class="md-flex-100" id="detail-container">
       <md-layout md-flex="100">
         <md-layout md-row>
-          <span class="md-display-2">This is Alert name</span>
+          <span class="md-display-2">{{ alert.name }}</span>
         </md-layout>
 
         <md-layout md-row md-flex="100" class="detail-row">
@@ -33,6 +33,12 @@
     name: 'alert-detail',
     data() {
       return {}
+    },
+    props: {
+      alert: {
+        type: Object,
+        required: true
+      }
     },
     components: {
       EntityGroup

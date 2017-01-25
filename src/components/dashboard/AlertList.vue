@@ -7,17 +7,7 @@
       <md-input></md-input>
     </md-input-container>
     <md-list class="md-flex-100 md-triple-line">
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
-      <alert-item></alert-item>
+      <alert-item v-for="alert in alerts" :alert="alert"></alert-item>
     <md-list>
   </md-whiteframe>
   </md-layout>
@@ -31,6 +21,9 @@
     name: 'alert-list',
     data() {
       return {}
+    },
+    props: {
+      alerts: {type: Array, required: true}
     },
     components: {
       AlertCard,
