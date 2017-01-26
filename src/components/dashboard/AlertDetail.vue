@@ -7,16 +7,8 @@
         </md-layout>
 
         <md-layout md-row md-flex="100" class="detail-row">
-          <entity-group></entity-group>
-          <entity-group></entity-group>
-          <entity-group></entity-group>
-          <entity-group></entity-group>
-          <entity-group></entity-group>
-          <entity-group></entity-group>
-          <entity-group></entity-group>
+          <entity-group v-for="(appEntities, application) in groupedEntities" :entities="appEntities"></entity-group>
         </md-layout>
-
-        <md-divider class=""></md-divider>
 
         <md-layout md-row md-flex="100" class="detail-row"></md-layout>
 
@@ -27,12 +19,16 @@
 </template>
 
 <script type="text/javascript">
+  import _ from 'lodash'
   import EntityGroup from './EntityGroup.vue'
 
   export default {
     name: 'alert-detail',
     data() {
-      return {}
+      return {
+        entities: [],
+        groupedEntities: {}
+      }
     },
     props: {
       alert: {
@@ -42,6 +38,25 @@
     },
     components: {
       EntityGroup
+    },
+    methods: {
+      getEntities: function() {
+        let vm = this
+        this.$zmon
+          .getEntities()
+          .then(function (resp) {
+            vm.entities = resp.data
+            vm.groupedEntities = _.groupBy(vm.entities, 'application_id')
+            console.log(vm.groupedEntities)
+          })
+      }
+    },
+    created: function() {
+      this.getEntities()
+      // this.poll = setInterval(this.getEntities, 5000)
+    },
+    destroyed: function() {
+      clearInterval(this.poll)
     }
   }
 </script>

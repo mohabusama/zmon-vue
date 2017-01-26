@@ -1,7 +1,7 @@
 <template>
   <layout class="md-flex-100">
     <md-layout md-flex="25">
-      <alert-list :alerts="alerts" v-on:alert-select="showAlert"></alert-list>
+      <alert-list :alerts="alerts" :selected="selectedAlert" v-on:selectAlert="showAlert"></alert-list>
     </md-layout>
     <md-layout>
       <alert-detail :alert="selectedAlert"></alert-detail>
@@ -62,6 +62,7 @@
         return this.$zmon.getEntities()
       },
       showAlert: function(alert) {
+        console.log(alert)
         this.selectedAlert = alert
       }
     },
